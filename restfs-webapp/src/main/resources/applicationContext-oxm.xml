@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<!-- <bean -->
+	<!-- class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter"> -->
+	<!-- <property name="messageConverters"> -->
+	<!-- <list> -->
+	<!-- <ref bean="stringHttpMessageConverter"/> -->
+	<!-- <ref bean="marshallingHttpMessageConverter" /> -->
+	<!-- </list> -->
+	<!-- </property> -->
+	<!-- </bean> -->
+
+	<!-- <bean id="stringHttpMessageConverter" -->
+	<!-- class="org.springframework.http.converter.StringHttpMessageConverter" 
+		/> -->
+
+	<!-- <bean id="marshallingHttpMessageConverter" -->
+	<!-- class="org.springframework.http.converter.xml.MarshallingHttpMessageConverter"> -->
+	<!-- <property name="marshaller" ref="castorMarshaller" /> -->
+	<!-- <property name="unmarshaller" ref="castorMarshaller" /> -->
+	<!-- </bean> -->
+
+	<!-- <bean id="castorMarshaller" class="org.springframework.oxm.castor.CastorMarshaller" 
+		/> -->
+	<bean id="xmlViewer"
+		class="org.springframework.web.servlet.view.xml.MarshallingView">
+		<constructor-arg>
+			<bean class="org.springframework.oxm.jaxb.Jaxb2Marshaller">
+				<property name="classesToBeBound">
+					<list>
+						<value>net.yogocodes.restfs.model.FileEntry</value>
+					</list>
+				</property>
+			</bean>
+		</constructor-arg>
+	</bean>
+
+</beans>
